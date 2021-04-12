@@ -1,5 +1,5 @@
 const {Usuario, Post, Comentario, sequelize} = require('./models');
-const {Op} = require('sequelize');
+const {Op, useInflection} = require('sequelize');
 
 
 // Usuario.findAll()
@@ -89,7 +89,7 @@ const {Op} = require('sequelize');
 
 //----------- exemplo create/destroy e update--------------
 
-// Usuario.create([{
+// Usuario.bulkCreate([{
 //     nome: 'Diego',
 //     email: 'diego@nextschool.com',
 //     senha: 'diego123321'
@@ -132,13 +132,37 @@ const {Op} = require('sequelize');
 //     console.log(resultado.toJSON());
 // });
 
-Usuario.update({
-    email: 'sergio@digitalhouse.com'
-},{ 
-    where: {
-        id: 2
+// Usuario.update({
+//     email: 'sergio@digitalhouse.com'
+// },{ 
+//     where: {
+//         nome: {[Op.like]:
+//             '%sergio%'}
+//     }
+// }).then((resultado) =>{
+//     console.log(resultado);
+// });
+
+// Usuario.findByPk(1,{
+//     include: [{
+//         association:"posts"
+//     }]
+// }).then((usuario) =>{
+//     console.table(usuario.posts.map((post) => post.toJSON()))
+// });
+
+                                   // outro metodo
+
+// Usuario.findByPk(1,{include:['posts']}).then( //o nome dentro do include tem que ser igual ao alias feito no Usuario.js
+//     usuario =>{
+//         console.log(usuario.toJSON());
+//         sequelize.close();
+//     }
+// )
+
+Post.findByPk(2,{include:['comentarios']}).then( //o nome dentro do include tem que ser igual ao alias feito no Usuario.js
+    post =>{
+        console.log(post.toJSON());
+        sequelize.close();
     }
-}).then((resultado) =>{
-    console.log(resultado);
-});
-    
+)
