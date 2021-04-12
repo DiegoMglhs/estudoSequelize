@@ -77,12 +77,68 @@ const {Op} = require('sequelize');
 //     console.table(resultado.map(user => user.toJSON()));
 // });
 
-for (let i = 0; i < 6; i += 2) {
-    Comentario.findAll({
-      order: [['id', 'DESC']],
-      offset: i,
-      limit: 2,
-    }).then((resultado) => {
-      console.table(resultado.map((comment) => comment.toJSON()));
-    });
-  }
+// for (let i = 0; i < 6; i += 2) {
+//     Comentario.findAll({
+//       order: [['id', 'DESC']],
+//       offset: i,
+//       limit: 2,
+//     }).then((resultado) => {
+//       console.table(resultado.map((comment) => comment.toJSON()));
+//     });
+//   }
+
+//----------- exemplo create/destroy e update--------------
+
+// Usuario.create([{
+//     nome: 'Diego',
+//     email: 'diego@nextschool.com',
+//     senha: 'diego123321'
+// },{
+//     nome: 'Anderson',
+//     email: 'anderson@nextschool.com',
+//     senha: 'anderson1'
+// }]).then((resultado) => {
+//     console.log(resultado.toJSON());
+// });
+
+// Usuario.update({
+//     senha: 'novasenha123'
+// },{
+//     where: {
+//         id: 3
+//     }
+// }).then((resultado) =>{
+//     console.log(resultado);
+// });
+
+// Usuario.findAll().then((usuarios) => {
+//     console.log(usuarios.map((usuario) =>usuario.toJSON()));
+// })
+
+// Usuario.destroy({
+//     where:{
+//         id:5
+//     }
+// }).then((resultado) => {
+//     console.log(resultado);
+// });
+
+// Post.create({
+//     texto: 'Hello word! para nao dar azar.',
+//     img: null ,
+//     usuarios_id: '10',
+//     n_likes: 1
+// }).then((resultado) => {
+//     console.log(resultado.toJSON());
+// });
+
+Usuario.update({
+    email: 'sergio@digitalhouse.com'
+},{ 
+    where: {
+        id: 2
+    }
+}).then((resultado) =>{
+    console.log(resultado);
+});
+    
