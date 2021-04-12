@@ -37,10 +37,52 @@ const {Op} = require('sequelize');
 //     console.log(resultado.dataValues);
 // });
 
-Post.findAll({
+// Post.findAll({
+//     where:{
+//         texto: {[Op.like]: 'oi%'} 
+//     }
+// })
+// .then((resultado) => {
+//     console.table(resultado.map(user => user.toJSON()));
+// });
+
+// Usuario.findAll({
+//     order: [
+//         ['id', 'ASC']
+//     ],
+//     limit: 2, // limite de linhas postadas
+//     offset: 2 //pula o nomero de linhas que foi definido
+// })
+// .then((resultado) => {
+//     console.table(resultado.map(user => user.toJSON()));
+// });
+
+// exercicios em sala separada
+
+Usuario.findAll({
     where:{
-        texto: {[Op.like]: 'oi%'} 
+        nome: {[Op.like]: '%a%'} 
     }
+})
+.then((resultado) => {
+    console.table(resultado.map(user => user.toJSON()));
+});
+
+Usuario.findAll({
+    where:{
+        nome: {[Op.notLike]: '%a%'} 
+    }
+})
+.then((resultado) => {
+    console.table(resultado.map(user => user.toJSON()));
+});
+
+Comentario.findAll({
+    order: [
+        ['id', 'ASC']
+    ],
+    limit: 2, // limite de linhas postadas
+    offset: 1
 })
 .then((resultado) => {
     console.table(resultado.map(user => user.toJSON()));
