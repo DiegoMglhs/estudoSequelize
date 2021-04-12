@@ -59,31 +59,30 @@ const {Op} = require('sequelize');
 
 // exercicios em sala separada
 
-Usuario.findAll({
-    where:{
-        nome: {[Op.like]: '%a%'} 
-    }
-})
-.then((resultado) => {
-    console.table(resultado.map(user => user.toJSON()));
-});
+// Usuario.findAll({
+//     where:{
+//         nome: {[Op.like]: '%a%'} 
+//     }
+// })
+// .then((resultado) => {
+//     console.table(resultado.map(user => user.toJSON()));
+// });
 
-Usuario.findAll({
-    where:{
-        nome: {[Op.notLike]: '%a%'} 
-    }
-})
-.then((resultado) => {
-    console.table(resultado.map(user => user.toJSON()));
-});
+// Usuario.findAll({
+//     where:{
+//         nome: {[Op.notLike]: '%a%'} 
+//     }
+// })
+// .then((resultado) => {
+//     console.table(resultado.map(user => user.toJSON()));
+// });
 
-Comentario.findAll({
-    order: [
-        ['id', 'ASC']
-    ],
-    limit: 2, // limite de linhas postadas
-    offset: 1
-})
-.then((resultado) => {
-    console.table(resultado.map(user => user.toJSON()));
-});
+for (let i = 0; i < 6; i += 2) {
+    Comentario.findAll({
+      order: [['id', 'DESC']],
+      offset: i,
+      limit: 2,
+    }).then((resultado) => {
+      console.table(resultado.map((comment) => comment.toJSON()));
+    });
+  }
