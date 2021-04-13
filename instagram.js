@@ -160,9 +160,24 @@ const {Op, useInflection} = require('sequelize');
 //     }
 // )
 
-Post.findByPk(2,{include:['comentarios']}).then( //o nome dentro do include tem que ser igual ao alias feito no Usuario.js
-    post =>{
-        console.log(post.toJSON());
+// Post.findByPk(2,{include:['comentarios']}).then( //o nome dentro do include tem que ser igual ao alias feito no Usuario.js
+//     post =>{
+//         console.log(post.toJSON());
+//         sequelize.close();
+//     }
+// )
+
+// Post.findByPk(3, {include:["curtiu"]}).then(
+//     post => {
+//         console.log(post.toJSON());
+//         sequelize.close();
+//     }
+// )
+
+Usuario.findByPk(1, {include:["curtiu"]}).then(
+    usuario => {
+        console.log(usuario.toJSON());
         sequelize.close();
     }
 )
+
